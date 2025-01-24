@@ -17,7 +17,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 1,
     name: "Pixel Baddie",
     price: 25,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://i.seadn.io/gae/uGcdM7SZW1b-bvvSZDH01XoBQ3wFfGeh4iAy5m7OHeoUuQdiOvSKZxDGuFADMiNglqFTzv-BxUH94ckXqx9C7bhAC7yXMBKLD-4VAw?auto=format&dpr=1&w=1000",
     category: "Digital Art",
     sold: false
@@ -26,7 +26,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 2,
     name: "बन्दर",
     price: 18,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",
     category: "Digital Art",
     sold: false
@@ -35,7 +35,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 3,
     name: "Yakuza Chimpo",
     price: 32,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://img.freepik.com/premium-photo/gorilla-with-suit-tie-that-says-gorilla-it_919652-503.jpg",
     category: "Photography",
     sold: false
@@ -44,7 +44,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 4,
     name: "Mancryption",
     price: 45,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://img.freepik.com/free-photo/cyberpunk-bitcoin-illustration_23-2151611169.jpg",
     category: "Digital Art",
     sold: false
@@ -53,7 +53,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 5,
     name: "Lavdasur",
     price: 28,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://i.seadn.io/gae/hNUs-d6IGNNY9MVXy-yr7lf5EI155TxOICA47T636Me8o9Rk3Q15N9b3Yu7bD7Wz1ctOqlMy9PvNLJcgqQUJ78XZ?auto=format&dpr=1&w=1000",
     category: "Art",
     sold: false
@@ -62,7 +62,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 6,
     name: "Crazy Meow",
     price: 55,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://preview.redd.it/a-cat-skydiving-v0-0qabokc3czib1.jpg?width=1024&format=pjpg&auto=webp&s=00f1506e03e40489a707aeea076a4564afa27968",
     category: "Digital Art",
     sold: false
@@ -71,7 +71,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 7,
     name: "Angry Zebra",
     price: 40,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://www.shutterstock.com/image-photo/anime-artistic-image-frightened-angry-600nw-2543601241.jpg",
     category: "Art",
     sold: false
@@ -80,7 +80,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 8,
     name: "Digital Genesis",
     price: 35,
-    creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
     image: "https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=800&auto=format&fit=crop",
     category: "Digital Art",
     sold: false

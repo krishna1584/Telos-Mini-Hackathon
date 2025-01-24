@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import NFTMarketplaceABI from '../contracts/NFTMarketplace.json';
 
 const TELOS_TESTNET_RPC = 'https://testnet.telos.net/evm';
-const NFT_MARKETPLACE_ADDRESS = '0x742d35Cc6634C0532925a3b844Bc454e4438f44e';
+const NFT_MARKETPLACE_ADDRESS = '0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11';
 
 let provider: ethers.providers.Web3Provider | null = null;
 let signer: ethers.Signer | null = null;
