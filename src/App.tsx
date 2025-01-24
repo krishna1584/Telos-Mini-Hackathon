@@ -51,7 +51,7 @@ const INITIAL_NFTS: NFT[] = [
   },
   {
     id: 5,
-    name: "Lavdasur",
+    name: "Asur",
     price: 28,
     creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
     image: "https://i.seadn.io/gae/hNUs-d6IGNNY9MVXy-yr7lf5EI155TxOICA47T636Me8o9Rk3Q15N9b3Yu7bD7Wz1ctOqlMy9PvNLJcgqQUJ78XZ?auto=format&dpr=1&w=1000",
