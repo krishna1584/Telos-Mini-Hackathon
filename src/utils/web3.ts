@@ -1,15 +1,23 @@
 import { ethers } from 'ethers';
 import NFTMarketplaceABI from '../contracts/NFTMarketplace.json';
 
-const TELOS_TESTNET_RPC = 'https://testnet.telos.net/evm';
-const NFT_MARKETPLACE_ADDRESS = '0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11';
+// Configuration from environment variables
+const NETWORK_RPC_URL = import.meta.env.VITE_RPC_URL || 'YOUR_RPC_URL';
+const NFT_MARKETPLACE_ADDRESS = import.meta.env.VITE_NFT_MARKETPLACE_ADDRESS || 'YOUR_CONTRACT_ADDRESS';
+const CHAIN_ID = import.meta.env.VITE_CHAIN_ID || '0x1';
+const CHAIN_ID_DECIMAL = import.meta.env.VITE_CHAIN_ID_DECIMAL || '1';
+const NETWORK_NAME = import.meta.env.VITE_NETWORK_NAME || 'Your Network';
+const NATIVE_CURRENCY_NAME = import.meta.env.VITE_NATIVE_CURRENCY_NAME || 'ETH';
+const NATIVE_CURRENCY_SYMBOL = import.meta.env.VITE_NATIVE_CURRENCY_SYMBOL || 'ETH';
+const BLOCK_EXPLORER_URL = import.meta.env.VITE_BLOCK_EXPLORER_URL || 'https://etherscan.io';
+const DEFAULT_GAS_LIMIT = parseInt(import.meta.env.VITE_DEFAULT_GAS_LIMIT || '500000');
 
 let provider: ethers.providers.Web3Provider | null = null;
 let signer: ethers.Signer | null = null;
 let contract: ethers.Contract | null = null;
 
-export const getTelosProvider = () => {
-  return new ethers.providers.JsonRpcProvider(TELOS_TESTNET_RPC);
+export const getNetworkProvider = () => {
+  return new ethers.providers.JsonRpcProvider(NETWORK_RPC_URL);
 };
 
 export const connectWallet = async () => {
@@ -19,22 +27,22 @@ export const connectWallet = async () => {
     try {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x29' }],
+        params: [{ chainId: CHAIN_ID }],
       });
     } catch (switchError: any) {
       if (switchError.code === 4902) {
         await window.ethereum.request({
           method: 'wallet_addEthereumChain',
           params: [{
-            chainId: '0x29',
-            chainName: 'Telos EVM Testnet',
+            chainId: CHAIN_ID,
+            chainName: NETWORK_NAME,
             nativeCurrency: {
-              name: 'TLOS',
-              symbol: 'TLOS',
+              name: NATIVE_CURRENCY_NAME,
+              symbol: NATIVE_CURRENCY_SYMBOL,
               decimals: 18
             },
-            rpcUrls: [TELOS_TESTNET_RPC],
-            blockExplorerUrls: ['https://testnet.teloscan.io/']
+            rpcUrls: [NETWORK_RPC_URL],
+            blockExplorerUrls: [BLOCK_EXPLORER_URL]
           }]
         });
       } else {
@@ -70,7 +78,7 @@ const ensureContract = () => {
 export const getBalance = async (address: string) => {
   try {
     if (!provider) {
-      provider = new ethers.providers.JsonRpcProvider(TELOS_TESTNET_RPC);
+      provider = new ethers.providers.JsonRpcProvider(NETWORK_RPC_URL);
     }
     const balance = await provider.getBalance(address);
     return ethers.utils.formatEther(balance);
@@ -102,7 +110,7 @@ export const createNFT = async (name: string, price: string, category: string, i
       name,
       { 
         value: 0, // No listing fee
-        gasLimit: 500000 // Set a reasonable gas limit
+        gasLimit: DEFAULT_GAS_LIMIT
       }
     );
     
@@ -115,9 +123,9 @@ export const createNFT = async (name: string, price: string, category: string, i
     console.error("Error creating NFT:", error);
     
     if (error.code === 'INSUFFICIENT_FUNDS') {
-      throw new Error("Insufficient TLOS for gas fees. Please make sure you have enough TLOS for gas.");
+      throw new Error(`Insufficient ${NATIVE_CURRENCY_SYMBOL} for gas fees. Please make sure you have enough ${NATIVE_CURRENCY_SYMBOL} for gas.`);
     } else if (error.code === 'UNPREDICTABLE_GAS_LIMIT') {
-      throw new Error("Network error: Please ensure you're connected to Telos testnet and try again");
+      throw new Error(`Network error: Please ensure you're connected to ${NETWORK_NAME} and try again`);
     } else if (error.message.includes("user rejected")) {
       throw new Error("Transaction was rejected by user");
     } else {
@@ -136,7 +144,7 @@ export const buyNFT = async (itemId: number, price: string) => {
       itemId,
       { 
         value: priceInWei,
-        gasLimit: 500000
+        gasLimit: DEFAULT_GAS_LIMIT
       }
     );
     
@@ -148,7 +156,7 @@ export const buyNFT = async (itemId: number, price: string) => {
   } catch (error: any) {
     console.error("Error buying NFT:", error);
     if (error.code === 'INSUFFICIENT_FUNDS') {
-      throw new Error("Insufficient TLOS. Please make sure you have enough TLOS for the purchase price plus gas fees.");
+      throw new Error(`Insufficient ${NATIVE_CURRENCY_SYMBOL}. Please make sure you have enough ${NATIVE_CURRENCY_SYMBOL} for the purchase price plus gas fees.`);
     } else if (error.code === 4001) {
       throw new Error("Transaction was rejected by user");
     } else {

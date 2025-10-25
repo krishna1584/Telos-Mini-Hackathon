@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Wallet, PlusIcon, ShoppingCartIcon, X, Loader2, Hexagon, Sparkles, Coins } from 'lucide-react';
 import { connectWallet, createNFT, buyNFT, fetchMarketItems, fetchMyNFTs, getBalance } from './utils/web3';
+import { config, DEMO_CREATOR_ADDRESS } from './utils/config';
 import { ethers } from 'ethers';
 
 type NFT = {
@@ -17,7 +18,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 1,
     name: "Pixel Baddie",
     price: 25,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://i.seadn.io/gae/uGcdM7SZW1b-bvvSZDH01XoBQ3wFfGeh4iAy5m7OHeoUuQdiOvSKZxDGuFADMiNglqFTzv-BxUH94ckXqx9C7bhAC7yXMBKLD-4VAw?auto=format&dpr=1&w=1000",
     category: "Digital Art",
     sold: false
@@ -26,7 +27,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 2,
     name: "बन्दर",
     price: 18,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg",
     category: "Digital Art",
     sold: false
@@ -35,7 +36,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 3,
     name: "Yakuza Chimpo",
     price: 32,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://img.freepik.com/premium-photo/gorilla-with-suit-tie-that-says-gorilla-it_919652-503.jpg",
     category: "Photography",
     sold: false
@@ -44,7 +45,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 4,
     name: "Mancryption",
     price: 45,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://img.freepik.com/free-photo/cyberpunk-bitcoin-illustration_23-2151611169.jpg",
     category: "Digital Art",
     sold: false
@@ -53,7 +54,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 5,
     name: "Asur",
     price: 28,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://i.seadn.io/gae/hNUs-d6IGNNY9MVXy-yr7lf5EI155TxOICA47T636Me8o9Rk3Q15N9b3Yu7bD7Wz1ctOqlMy9PvNLJcgqQUJ78XZ?auto=format&dpr=1&w=1000",
     category: "Art",
     sold: false
@@ -62,7 +63,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 6,
     name: "Crazy Meow",
     price: 55,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://preview.redd.it/a-cat-skydiving-v0-0qabokc3czib1.jpg?width=1024&format=pjpg&auto=webp&s=00f1506e03e40489a707aeea076a4564afa27968",
     category: "Digital Art",
     sold: false
@@ -71,7 +72,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 7,
     name: "Angry Zebra",
     price: 40,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://www.shutterstock.com/image-photo/anime-artistic-image-frightened-angry-600nw-2543601241.jpg",
     category: "Art",
     sold: false
@@ -80,7 +81,7 @@ const INITIAL_NFTS: NFT[] = [
     id: 8,
     name: "Digital Genesis",
     price: 35,
-    creator: "0x3AA64FbA4e4D4f3752eA6dE913AC84E2c7105B11",
+    creator: DEMO_CREATOR_ADDRESS,
     image: "https://images.unsplash.com/photo-1635322966219-b75ed372eb01?w=800&auto=format&fit=crop",
     category: "Digital Art",
     sold: false
@@ -225,14 +226,14 @@ function App() {
             <div className="flex items-center gap-2">
               <Hexagon className="w-8 h-8 text-blue-400 animate-pulse" />
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
-                TelosNFT
+                {config.appName}
               </span>
             </div>
             <div className="flex items-center gap-4">
               {account && (
                 <div className="flex items-center gap-2 px-4 py-2 bg-blue-900/50 rounded-lg">
                   <Coins className="w-5 h-5 text-yellow-400" />
-                  <span className="text-blue-200">{balance} TLOS</span>
+                  <span className="text-blue-200">{balance} {config.nativeCurrencySymbol}</span>
                 </div>
               )}
               <button
@@ -250,19 +251,19 @@ function App() {
           <div className="text-center space-y-8">
             <div className="relative inline-block">
               <h1 className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 animate-gradient">
-                Welcome to TelosNFT
+                Welcome to {config.appName}
               </h1>
               <Sparkles className="absolute -top-8 -right-8 w-12 h-12 text-blue-400 animate-bounce" />
             </div>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
-              Discover, collect, and trade unique digital assets on the Telos blockchain. 
+              {config.appDescription} on the {config.networkName} blockchain. 
               Our platform offers fast transactions, low fees, and a sustainable approach to NFT trading.
             </p>
             <div className="flex flex-col gap-8 mt-16">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="group bg-blue-900/30 p-8 rounded-xl backdrop-blur-sm border border-blue-500/20 transform hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
                   <h3 className="text-2xl font-bold mb-4 text-blue-300 group-hover:text-blue-400 transition-colors">Low Gas Fees</h3>
-                  <p className="text-blue-200 group-hover:text-blue-100 transition-colors">Experience minimal transaction costs on the Telos network</p>
+                  <p className="text-blue-200 group-hover:text-blue-100 transition-colors">Experience minimal transaction costs on the {config.networkName} network</p>
                 </div>
                 <div className="group bg-blue-900/30 p-8 rounded-xl backdrop-blur-sm border border-blue-500/20 transform hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20">
                   <h3 className="text-2xl font-bold mb-4 text-blue-300 group-hover:text-blue-400 transition-colors">Fast Transactions</h3>
@@ -294,14 +295,14 @@ function App() {
           <div className="flex items-center gap-2">
             <Hexagon className="w-8 h-8 text-blue-400 animate-pulse" />
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
-              TelosNFT
+              {config.appName}
             </span>
           </div>
           <div className="flex items-center gap-4">
             {account && (
               <div className="flex items-center gap-2 px-4 py-2 bg-blue-900/50 rounded-lg">
                 <Coins className="w-5 h-5 text-yellow-400" />
-                <span className="text-blue-200">{balance} TLOS</span>
+                <span className="text-blue-200">{balance} {config.nativeCurrencySymbol}</span>
               </div>
             )}
             <button
@@ -319,10 +320,10 @@ function App() {
         <section className="mb-12">
           <div className="bg-blue-900/30 rounded-2xl p-8 backdrop-blur-sm border border-blue-500/20">
             <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
-              Discover, Collect, and Sell NFTs on Telos
+              Discover, Collect, and Sell NFTs on {config.networkName}
             </h2>
             <p className="text-blue-200 mb-6 max-w-2xl">
-              Experience fast and eco-friendly NFT trading on the Telos blockchain
+              Experience fast and eco-friendly NFT trading on the {config.networkName} blockchain
             </p>
             <button 
               onClick={() => setIsModalOpen(true)}
@@ -389,7 +390,7 @@ function App() {
                     </div>
                     <div className="text-right">
                       <div className="text-sm text-blue-300">Price</div>
-                      <div className="text-lg font-bold text-blue-400">{nft.price} TLOS</div>
+                      <div className="text-lg font-bold text-blue-400">{nft.price} {config.nativeCurrencySymbol}</div>
                     </div>
                   </div>
                   {activeTab === 'market' && !nft.sold && (
@@ -454,7 +455,7 @@ function App() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-blue-200 mb-1">
-                  Price (TLOS)
+                  Price ({config.nativeCurrencySymbol})
                 </label>
                 <input
                   type="number"
@@ -463,7 +464,7 @@ function App() {
                   value={newNFT.price}
                   onChange={(e) => setNewNFT({ ...newNFT, price: e.target.value })}
                   className="w-full px-3 py-2 bg-blue-950/50 rounded-lg border border-blue-500/30 focus:ring-2 focus:ring-blue-500 text-white placeholder-blue-300/50"
-                  placeholder="Enter price in TLOS"
+                  placeholder={`Enter price in ${config.nativeCurrencySymbol}`}
                 />
               </div>
               <div>
