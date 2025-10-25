@@ -2,8 +2,6 @@
 
 A modern, fast, and eco-friendly NFT marketplace built on the Telos blockchain. Experience seamless NFT trading with minimal gas fees and lightning-fast transactions.
 
-![TelosNFT Banner](https://via.placeholder.com/1200x400/1e40af/ffffff?text=TelosNFT+Marketplace)
-
 ## ✨ Features
 
 - 🎨 **Create & Mint NFTs** - Turn your digital art into unique tokens
